@@ -1,12 +1,13 @@
 import { BlogComponent } from "@/components/Blog";
 import { getBlogById } from "@/utils/blogs";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { blogId: string };
-}) {
-  const blog = await getBlogById(+params.blogId);
+type PageProps = {
+  params: Promise<{ blogId: number }>;
+};
+
+export async function generateMetadata({ params }: PageProps) {
+  const { blogId } = await params;
+  const blog = await getBlogById(blogId);
 
   if (!blog.id) {
     return {
@@ -21,11 +22,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function BlogsId({
-  params,
-}: {
-  params: { blogId: string };
-}) {
-  const blog = await getBlogById(+params.blogId);
+export default async function BlogsId({ params }: PageProps) {
+  const { blogId } = await params;
+  const blog = await getBlogById(blogId);
   return <BlogComponent {...blog} />;
 }
