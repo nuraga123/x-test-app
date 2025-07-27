@@ -26,3 +26,24 @@ export async function checkToken() {
     };
   }
 }
+
+export async function verifyTokenApi(req: Request) {
+  try {
+    const token = req.headers.get("authorization");
+
+    const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/users/verify-token`, {
+      headers: {
+        Authorization: token,
+      },
+    });
+
+    return data;
+  } catch (error) {
+    console.log("error", error);
+    const axiosError = error as AxiosError<{ errorMessage: string }>;
+    return {
+      errorMessage: axiosError.response?.data?.errorMessage,
+      valid: false,
+    };
+  }
+}

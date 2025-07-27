@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ToastContainer } from "react-toastify";
 import "antd/dist/reset.css";
-import ClientLayout from "@/components/layout";
+import ClientLayout from "@/layout";
 import "./globals.css";
 
 export const metadata: Metadata = {

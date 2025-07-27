@@ -88,7 +88,7 @@ export default function RegisterComponent() {
   };
 
   return (
-    <div className={styles.login} style={{ overflow: "auto", height: "100%" }}>
+    <div className={styles.login}>
       <div className={styles.login__wrapper}>
         <Image
           className={styles.login__logo}
