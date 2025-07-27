@@ -156,7 +156,7 @@ export default function RegisterComponent() {
                 name="role"
                 className={styles.login__input}
                 rules={[
-                  { required: true, message: "Zəhmət olmasa rol daxil edin" },
+                  { required: true, message: "Zəhmət olmasa vəzifəsini seçin" },
                 ]}
               >
                 <Select
