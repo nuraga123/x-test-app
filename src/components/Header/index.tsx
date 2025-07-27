@@ -1,35 +1,73 @@
 "use client";
+import "@ant-design/v5-patch-for-react-19";
+import React, { useEffect, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { Dropdown, MenuProps, Avatar, Layout, Space, Typography } from "antd";
+import { UserOutlined, LogoutOutlined, DownOutlined } from "@ant-design/icons";
+import { checkToken } from "@/utils/users/checkToken";
+import { toast } from "react-toastify";
 
-import Link from "next/link";
-import React from "react";
-
-const menuArray = [
-  { href: "/", label: "Home" },
-  { href: "/blogs", label: "Blogs" },
-  { href: "/about", label: "About" },
-  { href: "/client", label: "Client" },
-  { href: "/client/show", label: "Show" },
-  { href: "/client/nuraga", label: "Client Nuraga" },
-];
+const { Header: AntHeader } = Layout;
+const { Text } = Typography;
 
 export const Header = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const [user, setUser] = useState({
+    name: "",
+    role: "",
+  });
+
+  useEffect(() => {
+    async function loadUser() {
+      const { decoded, valid } = await checkToken();
+      if (!valid) return;
+      console.log("decoded", decoded);
+
+      if (decoded.id) setUser({ name: decoded.name, role: decoded.role });
+    }
+
+    loadUser();
+  }, [router, pathname]);
+
+  if (pathname === "/login" || pathname === "/register") {
+    return null;
+  }
+
+  const logout = () => {
+    toast("Çıxış edildi");
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
+
+  const items: MenuProps["items"] = [
+    {
+      key: "logout",
+      label: "Çıxış",
+      icon: <LogoutOutlined />,
+      onClick: logout,
+    },
+  ];
+
   return (
-    <div className="bg-gray-900 text-white shadow-lg flex flex-col">
-      <div className="p-6 text-2xl font-bold border-b border-gray-700">GPS</div>
-      <nav className="flex-1 px-4 py-6">
-        <ul className="space-y-4">
-          {menuArray.map(({ href, label }) => (
-            <li key={href}>
-              <Link
-                href={href}
-                className="block px-4 py-2 rounded hover:bg-gray-700 transition"
-              >
-                {label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </div>
+    <AntHeader
+      style={{
+        background: "#fff",
+        display: "flex",
+        justifyContent: "flex-end",
+        boxShadow: "0 2px 8px #f0f1f2",
+        height: "54px",
+      }}
+    >
+      <Dropdown menu={{ items }} placement="bottomRight" trigger={["click"]}>
+        <Space style={{ cursor: "pointer" }}>
+          <Avatar size="small" icon={<UserOutlined />} />
+          <Text strong>{user.name}</Text>
+          <Text strong>{user.role}</Text>
+          <DownOutlined />
+        </Space>
+      </Dropdown>
+    </AntHeader>
   );
 };

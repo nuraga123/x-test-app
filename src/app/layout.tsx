@@ -1,21 +1,25 @@
 import type { Metadata } from "next";
+import { ToastContainer } from "react-toastify";
+import "antd/dist/reset.css";
+import ClientLayout from "@/components/layout";
 import "./globals.css";
-import { Header } from "@/components/Header";
 
-export const metadata: Metadata = { title: "GPS BARN APP" };
+export const metadata: Metadata = {
+  title: "GPS BARN APP",
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body className="flex">
-        <Header />
-        <div className="border-4 border-gray-200">
-          <main>{children}</main>
+      <body>
+        <div id="toast-container">
+          <ToastContainer position="top-right" autoClose={5000} />
         </div>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

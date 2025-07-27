@@ -1,0 +1,30 @@
+.header {
+  background: #001529;
+  padding: 0 24px;
+
+  &__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+  }
+
+  .username {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+}

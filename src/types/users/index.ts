@@ -6,3 +6,9 @@ export interface IUser {
   password: string;
   role: UserRoleType;
 }
+
+export type LoginFormValues = {
+  name: string;
+  password: string;
+  remember?: boolean;
+};

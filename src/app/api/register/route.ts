@@ -1,25 +1,32 @@
+import bcrypt from "bcrypt";
 import { connectDB } from "@/lib/mongodb";
 import User from "@/models/User";
-import bcrypt from "bcrypt";
+import { IUser } from "@/types/users";
 
 export async function POST(req: Request) {
   await connectDB();
 
-  const { name, email, password, role } = await req.json();
+  const { name, email, password, role }: IUser = await req.json();
 
+  const existingEmail = await User.findOne({ email });
+  const existingName = await User.findOne({ name });
 
-  
-  const existing = await User.findOne({ email });
-  if (existing) return new Response("Email already exists", { status: 400 });
+  if (existingEmail || existingName) {
+    return Response.json(
+      { errorMessage: "Email və ya ad artıq istifadə olunub" },
+      { status: 400 }
+    );
+  }
 
   const hashed = await bcrypt.hash(password, 10);
 
   const user = await User.create({
     name,
     email,
-    password: hashed,
     role,
+    password: hashed,
+    token: "",
   });
 
-  return Response.json({ message: "User created", user });
+  return Response.json({ user });
 }

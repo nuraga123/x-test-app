@@ -1,11 +1,6 @@
 import { IUser } from "@/types/users";
 
-export const validateUser = ({
-  name,
-  email,
-  password,
-  role,
-}: IUser): true | { invalidMessages: string[] } => {
+export const validateUser = ({ name, email, password, role }: IUser) => {
   const invalidMessages: string[] = [];
 
   // Проверка имени
@@ -25,7 +20,11 @@ export const validateUser = ({
   }
 
   // Проверка роли
-  if (!role.includes("admin" || "courier" || "user")) {
+  if (!role.includes("user" || "courier" || "admin")) {
+    console.log("role", role);
+    console.log("user", role === "user");
+    console.log("courier", role === "courier");
+    console.log("admin", role === "admin");
     invalidMessages.push(
       "Роль должна быть одной из следующих: админ, складчик, курьер"
     );

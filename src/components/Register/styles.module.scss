@@ -1,0 +1,223 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 100vh;
+  background: linear-gradient(45deg, #ececec, #7497cf);
+}
+
+.login__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 650px;
+  width: 100%;
+  margin: 50px auto;
+  padding: 30px 0;
+  background: linear-gradient(90deg, #91abd5);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  animation: fadeUp 0.5s ease-in-out forwards;
+}
+
+.login__title {
+  margin: 0px;
+  text-align: center;
+  font-size: 28px;
+  color: #fff;
+  opacity: 0;
+  animation: fadeUp 0.6s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+.login__subtitle {
+  text-align: center;
+  margin: 0 15px 0;
+  font-size: 16px;
+  color: #ffd;
+  border-bottom: 3px solid #ccc;
+  padding-bottom: 8px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease-out forwards;
+  animation-delay: 0.4s;
+}
+
+.login__flex {
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  animation: fadeUp 0.6s ease-out forwards;
+  animation-delay: 0.6s;
+}
+
+.login__logo {
+  width: 250px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease-out forwards, rotateLogo 4s linear infinite;
+  animation-delay: 0.8s, 1.5s; // первая анимация — fadeUp, вторая — rotate
+  border-radius: 16px;
+  transition: transform 1s ease;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease-out forwards;
+  animation-delay: 1s;
+}
+
+.login__input {
+  input {
+    padding: 11px !important;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 16px;
+    transition: border-color 0.2s ease;
+    color: #333;
+
+    &:focus {
+      border-color: #0070f3;
+      outline: none;
+    }
+  }
+
+  label {
+    font-weight: 600 !important;
+    color: #fff !important;
+    font-size: 20px !important;
+    margin-bottom: 6px !important;
+    display: inline-block !important;
+    transition: color 0.3s ease !important;
+  }
+
+  span {
+    padding: 0 !important;
+    padding-right: 3px !important;
+  }
+
+  // 👉 Стили для текста ошибки внутри Form.Item
+  :global(.ant-form-item-explain-error) {
+    color: red !important;
+    font-size: 14px;
+    margin: 10px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background-color: #fff;
+    font-weight: 500;
+  }
+
+  &.anticon-eye-invisible {
+    color: #999;
+    padding: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #333;
+    }
+  }
+}
+
+.login__button {
+  height: 40px;
+  text-align: center;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  opacity: 0;
+  animation: fadeUp 0.6s ease-out forwards;
+  animation-delay: 1.2s;
+
+  &:hover {
+    background-color: green;
+  }
+}
+
+.register__button {
+  height: 40px;
+  text-align: center;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  opacity: 0;
+  animation: fadeUp 0.6s ease-out forwards;
+  animation-delay: 1.2s;
+
+  &:hover {
+    background-color: #005dc1;
+  }
+}
+
+.login__error {
+  color: #ff4d4f;
+  background-color: #fff;
+  padding: 10px;
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .login__flex {
+    flex-direction: column;
+  }
+
+  .login__wrapper {
+    max-width: 450px;
+    width: 100%;
+    margin: 20px auto;
+  }
+
+  .login__logo {
+    width: 180px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .login__wrapper {
+    max-width: 320px;
+    width: 100%;
+    margin: 10px auto;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .login__wrapper {
+    max-width: 300px;
+    width: 100%;
+    margin: 5px auto;
+    justify-content: flex-start;
+  }
+
+  .login__logo {
+    width: 120px;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
