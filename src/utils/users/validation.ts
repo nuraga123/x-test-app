@@ -2,7 +2,6 @@ import { IUser } from "@/types/users";
 
 export const validateUser = ({ name, email, password, role }: IUser) => {
   const invalidMessages: string[] = [];
-
   // Проверка имени
   if (!name || name.trim().length < 3) {
     invalidMessages.push("Имя должно содержать минимум 3 символа.");

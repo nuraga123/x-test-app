@@ -12,7 +12,7 @@ export async function registerUser({
   role: "user" | "admin" | "courier";
 }) {
   try {
-    const { data } = await axios.post("/api/register", {
+    const { data } = await axios.post("/api/users/register", {
       name,
       password,
       email,

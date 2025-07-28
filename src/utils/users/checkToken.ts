@@ -1,5 +1,7 @@
 import axios, { AxiosError } from "axios";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export async function checkToken() {
   try {
     const token = localStorage.getItem("token");
@@ -31,7 +33,7 @@ export async function verifyTokenApi(req: Request) {
   try {
     const token = req.headers.get("authorization");
 
-    const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/users/verify-token`, {
+    const { data } = await axios.get(`${API_URL}/api/users/verify-token`, {
       headers: {
         Authorization: token,
       },

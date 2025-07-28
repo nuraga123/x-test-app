@@ -8,7 +8,7 @@ export async function loginUser({
   password: string;
 }) {
   try {
-    const { data } = await axios.post("/api/login", {
+    const { data } = await axios.post("/api/users/login", {
       name,
       password,
     });
