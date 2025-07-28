@@ -15,7 +15,7 @@ export default function ClientLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const pathname = usePathname(); // получаем текущий путь
+  const pathname = usePathname();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
