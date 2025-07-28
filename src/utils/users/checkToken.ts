@@ -11,7 +11,7 @@ export async function checkToken() {
       return { valid: false, errorMessage: "Token not found" };
     }
 
-    const { data } = await axios.get("/api/verify-token", {
+    const { data } = await axios.get("/api/users/verify-token", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
