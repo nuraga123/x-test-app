@@ -23,7 +23,7 @@ export default function ClientLayout({
       const tokenData = await checkToken();
       console.log("token data: ", tokenData);
 
-      if (!tokenData) {
+      if (!tokenData.valid) {
         if (pathname.includes("register")) {
           setLoading(false);
           router.push("/register");
@@ -39,6 +39,7 @@ export default function ClientLayout({
       }
 
       setLoading(false);
+      router.push("/");
     };
 
     checkAuth();
