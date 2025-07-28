@@ -9,9 +9,9 @@ import {
   FaUserAlt,
   FaUsers,
   FaEye,
-  FaUserCircle,
   FaChevronDown,
 } from "react-icons/fa";
+import { LiaCarSideSolid } from "react-icons/lia";
 import Image from "next/image";
 import Logo from "@/assets/img/logo_gps.png";
 import styles from "./styles.module.scss";
@@ -21,14 +21,15 @@ const menuArray = [
   { href: "/blogs", label: "Blogs", icon: <FaBlog /> },
   { href: "/about", label: "About", icon: <FaUserAlt /> },
   {
-    label: "Client",
+    label: "istifadəçilər",
+    href: "/users",
     icon: <FaUsers />,
     subMenu: [
-      { href: "/client/show", label: "Show", icon: <FaEye /> },
+      { href: "/users/warehouseman", label: "anbardarlar", icon: <FaEye /> },
       {
-        href: "/client/nuraga",
-        label: "Client Nuraga",
-        icon: <FaUserCircle />,
+        href: "/users/courier",
+        label: "kurierlər",
+        icon: <LiaCarSideSolid />,
       },
     ],
   },

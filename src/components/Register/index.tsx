@@ -4,13 +4,12 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { Form, Input, Button, Spin } from "antd";
-import Logo from "@/assets/img/logo_gps.png";
-import { IUser } from "@/types/users";
+import { Form, Input, Button, Spin, Select } from "antd";
 import { registerUser } from "@/utils/users/registerUser";
-import styles from "./styles.module.scss"; // переиспользуем стили
 import { validateUser } from "@/utils/users/validation";
-import { Select } from "antd";
+import { IUser } from "@/types/users";
+import Logo from "@/assets/img/logo_gps.png";
+import styles from "./styles.module.scss";
 
 type ShowRoleType =
   | {

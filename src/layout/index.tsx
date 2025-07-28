@@ -19,27 +19,22 @@ export default function ClientLayout({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const publicRoutes = ["/login", "/register"];
     const checkAuth = async () => {
       const tokenData = await checkToken();
-      console.log("token data: ", tokenData);
 
       if (!tokenData.valid) {
-        if (pathname.includes("register")) {
-          setLoading(false);
-          router.push("/register");
-          return;
-        }
-
-        if (!pathname.includes("login")) {
+        if (!publicRoutes.includes(pathname)) {
           toast("Token vaxtı bitib", { type: "error" });
-          setLoading(false);
           router.push("/login");
-          return;
+        }
+      } else {
+        if (publicRoutes.includes(pathname)) {
+          router.push("/");
         }
       }
 
       setLoading(false);
-      router.push("/");
     };
 
     checkAuth();

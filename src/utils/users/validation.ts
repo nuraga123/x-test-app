@@ -19,11 +19,7 @@ export const validateUser = ({ name, email, password, role }: IUser) => {
   }
 
   // Проверка роли
-  if (
-    !role.includes("user") ||
-    !role.includes("courier") ||
-    !role.includes("admin")
-  ) {
+  if (role !== "user" && role !== "courier" && role !== "admin") {
     console.log("role", role);
     console.log("user", role === "user");
     console.log("courier", role === "courier");
