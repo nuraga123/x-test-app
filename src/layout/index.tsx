@@ -20,10 +20,10 @@ export default function ClientLayout({
 
   useEffect(() => {
     const checkAuth = async () => {
-      const { valid } = await checkToken();
-      console.log("valid", valid);
+      const tokenData = await checkToken();
+      console.log("token data: ", tokenData);
 
-      if (!valid) {
+      if (!tokenData) {
         if (pathname.includes("register")) {
           setLoading(false);
           router.push("/register");

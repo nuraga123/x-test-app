@@ -21,11 +21,17 @@ export const Header = () => {
 
   useEffect(() => {
     async function loadUser() {
-      const { decoded, valid } = await checkToken();
-      if (!valid) return;
-      console.log("decoded", decoded);
+      const tokenData = await checkToken();
+      console.log("tokenData", tokenData);
 
-      if (decoded.id) setUser({ name: decoded.name, role: decoded.role });
+      if (!tokenData.valid) return;
+
+      if (tokenData) {
+        setUser({
+          name: tokenData.name,
+          role: tokenData.role,
+        });
+      }
     }
 
     loadUser();

@@ -5,6 +5,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export async function checkToken() {
   try {
     const token = localStorage.getItem("token");
+    console.log("token", token);
 
     if (!token) {
       console.log("checkToken:  Token not found");
@@ -17,10 +18,11 @@ export async function checkToken() {
       },
     });
 
-    console.log("data", data);
+    console.log("checkToken:  ", data);
 
     return data;
   } catch (error) {
+    console.log("error", error);
     const axiosError = error as AxiosError<{ errorMessage: string }>;
     return {
       errorMessage: axiosError.response?.data?.errorMessage,
